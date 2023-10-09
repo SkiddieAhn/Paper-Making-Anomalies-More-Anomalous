@@ -29,7 +29,7 @@ We compared our model with prominent papers published from 2016 to 2023.
 ## Qualitative Comparison
 The Destroyer model enhances abnormality by destroying abnormal areas, resulting in a **larger gap in Anomaly Scores** between normal and abnormal data and an increased AUC.
 
-<img width="936" alt="mama_visualization" src="https://github.com/SkiddieAhn/Paper-Making-Anomalies-More-Anomalous/assets/52392658/a9c82a21-b4a0-4b77-a7b2-4676430b6363">
+<img width="936" alt="mama_visualization" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/5252afcb-fb6a-4591-8731-9ba1b78adfd3">
 
 
 ## Dependencies

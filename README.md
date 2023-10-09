@@ -21,7 +21,8 @@ It's a **two-stage video anomaly detection method** based on <ins>unsupervised l
 <img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/ff772380-24b0-44a0-8a9b-5c86da0fbdae">
 
 ## Results
-AUC comparison with the state of the art methods. Best results are **bolded**. Best seconds are <ins>underlined</ins>.
+AUC comparison with the state of the art methods. Best results are **bolded**. Best seconds are <ins>underlined</ins>.  
+We compared our model with prominent papers published from 2016 to 2023.
 
 <img width="936" alt="mama_sota" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/9b214fe4-88c7-495d-aebc-903ffe73e755">
 

@@ -73,12 +73,12 @@ tensorboard --logdir=tensorboard_log/{dataset_name}_bs{batch_size}
 ```
 
 ## Evaluation
-- ```g_best_auc_avenue.pth``` contains only generator weights.
+- ```g_best_auc_{dataset_name}.pth``` contains only generator weights.
 ```Shell
 # recommended code for generator evaluation.
 python eval.py --dataset=avenue --trained_model=g_best_auc_avenue
 ```
-- ```a_best_auc_avenue.pth``` contains both generator weights and destroyer weights.
+- ```a_best_auc_{dataset_name}.pth``` contains both generator weights and destroyer weights.
 ```Shell
 # recommended code for destroyer evaluation.
 python eval.py --dataset=avenue --trained_model=a_best_auc_avenue

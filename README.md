@@ -6,12 +6,12 @@ by Seungkyun Hong, Sunghyun Ahn, Youngwan Jo and Sanghyun Park.
 Seungkyun Hong and <ins>Sunghyun Ahn</ins> are equal contributors to this work and designated as co-first authors.
 
 ## Architecture overview of F2LM Generator
-This new Generator excels at predicting normal frames but struggles with abnormal ones. It includes a module to **transform normal features** in bottleneck areas, reducing its ability to generate abnormal frames.
+This new Generator excels at predicting normal frame but struggles with abnormal one. It includes a module to **transform normal features** in bottleneck areas, reducing its ability to generate abnormal frame.
 
 <img width="936" alt="fig-generator" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/5c4f4ab5-b12e-4e31-8acd-3899e285eed2">
 
 ## Architecture overview of Destroyer
-It's a Destroyer that takes generated future frames as input, **detects low-quality regions, and disrupts them**. This enhances the abnormality in the output. We trained the Destroyer using self-supervised learning because the training data doesn't include abnormal frames.
+It's a Destroyer that takes generated future frame as input, **detects low-quality regions, and disrupts them**. This enhances the abnormality in the output. We trained the Destroyer using self-supervised learning because the training data doesn't include abnormal frames.
 
 <img width="936" alt="fig-destroyer" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/0c200851-5cfb-4ae2-a153-2f1704e095d4">
 

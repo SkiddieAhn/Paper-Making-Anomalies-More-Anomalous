@@ -33,16 +33,11 @@ def update_config(args=None, mode=None):
     share_config['mode'] = mode
     assert args.dataset in ('ped1', 'ped2', 'avenue', 'shanghai'), 'Dataset error.'
     share_config['dataset'] = args.dataset
-    share_config['save_dir'] = args.save_dir
 
     if mode == 'train':
-        share_config['flownet'] = args.flownet
-        share_config['segnet'] = args.segnet
         share_config['work_num'] = args.work_num
         share_config['sch'] = args.sch
-        share_config['backward'] = args.backward
         share_config['show_status'] = False
-        share_config['best_model'] = None
         share_config['manualseed'] = args.manualseed
 
     if mode == 'test':

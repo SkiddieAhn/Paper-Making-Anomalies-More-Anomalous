@@ -18,8 +18,6 @@ from network.unet import UNet
 parser = argparse.ArgumentParser(description='MAMA_Generator')
 parser.add_argument('--dataset', default='avenue', type=str, help='The name of the dataset to train.')
 parser.add_argument('--trained_model', default=None, type=str, help='The pre-trained model to evaluate.')
-parser.add_argument('--save_dir', default=None, type=str, help='model save directory')
-parser.add_argument('--best_model', default=None, type=str, help='select {auc, best} and test!')
 parser.add_argument('--show_status', default=False, type=bool, help='show status')
 
 
@@ -55,12 +53,8 @@ def val(cfg, train_scores=None, models=None, iter=None, train=False):
         generator = UNet(mode='test', input_channels1=12, input_channels2=6, input_channels3=84, output_channels=3).cuda().eval()
 
         # load weight
-        if cfg.save_dir == None:
-            generator.load_state_dict(torch.load('weights/' + cfg.trained_model + '.pth')['net_g'])
-            iter = torch.load('weights/' + cfg.trained_model + '.pth')['step']
-        else:
-            generator.load_state_dict(torch.load(f'/scratch/{cfg.save_dir}_weights/' + cfg.trained_model + '.pth')['net_g'])
-            iter = torch.load(f'/scratch/{cfg.save_dir}_weights/' + cfg.trained_model + '.pth')['step']
+        generator.load_state_dict(torch.load('weights/' + cfg.trained_model + '.pth')['net_g'])
+        iter = torch.load('weights/' + cfg.trained_model + '.pth')['step']
 
         return val_test_eval(cfg, generator, None, iter)
     

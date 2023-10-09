@@ -18,7 +18,7 @@ def update_best_model(score_type, score, model_type, iteration, cfg, models, opt
     if score > scores[score_type]:
         scores[score_type] = score
         model_dict = make_models_dict(models, opts, scores)
-        save_path = f"/scratch/{cfg.save_dir}_weights/{cfg.work_num}_{score_type}_{cfg.dataset}.pth"
+        save_path = f'weights/{cfg.work_num}_{score_type}_{cfg.dataset}.pth'
         torch.save(model_dict, save_path)
         print('\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
         print(f"[best {model_type} {score_type} model] update! at {iteration} iteration!! [{model_type} {score_type}: {scores[score_type]:.3f}]")

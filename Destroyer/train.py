@@ -14,12 +14,9 @@ def main():
                         help='The pre-trained model to resume training with, pass \'latest\' or the model name.')
     parser.add_argument('--save_interval', default=1000, type=int, help='Save the model every [save_interval] iterations.')
     parser.add_argument('--val_interval', default=1000, type=int, help='Evaluate the model every [val_interval] iterations')
-    parser.add_argument('--flownet', default='2sd', type=str, help='load flownet and use flownet loss too! (lite: LiteFlownet, 2sd: FlowNet2SD)')
-    parser.add_argument('--segnet', default='deeplab', type=str, help='')
     parser.add_argument('--work_num', default=0, type=int)
     parser.add_argument('--save_dir', default='sha', type=str, help='model save directory')
     parser.add_argument('--sch', default=False, type=str2bool, nargs='?', const=True, help='scheduler')
-    parser.add_argument('--backward', default=False, type=str, help='use backward prediction when training')
     parser.add_argument('--manualseed', default=-1, type=int, help='manual seed')
 
     args = parser.parse_args()

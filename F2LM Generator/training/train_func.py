@@ -146,9 +146,9 @@ def training(cfg, dataset, dataloader, models, losses, opts, schs, scores):
                         writer.add_scalar('lr/lr_d', lr_d, global_step=scores['step'])
 
                     '''
-                    -------------------------------------------------------------------
-                    early stopping per val_interval => Save Model to [Central Server]
-                    -------------------------------------------------------------------
+                    -------------------------------
+                    early stopping per val_interval 
+                    --------------------------------
                     '''
                     if scores['step'] % cfg.val_interval == 0:
                         _, g_auc, scores = val(cfg=cfg, train_scores=scores, models=models, iter=scores['step'])

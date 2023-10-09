@@ -64,11 +64,8 @@ def def_models(cfg, train_img_size):
     flownet = FlowNet2SD().cuda()
         
     # deeplab v3
-    if cfg.segnet == 'deeplab':
-        with torch.no_grad():
-            segnet = torch.hub.load('pytorch/vision:v0.10.0', 'deeplabv3_resnet101', pretrained=True).cuda()
-    else:
-        segnet = None
+    with torch.no_grad():
+        segnet = torch.hub.load('pytorch/vision:v0.10.0', 'deeplabv3_resnet101', pretrained=True).cuda()
 
     return generator, discriminator, autoencoder, flownet, segnet
 
@@ -111,24 +108,20 @@ def load_models(cfg, generator, discriminator, autoencoder, flownet, segnet, opt
     print(f'Frozen Generator({cfg.generator}), Frozen Discriminator, AutoEncoder({cfg.autoencoder}) Ok!')
     print('===========================================================')
 
-    if cfg.flownet != None:
-        if cfg.flownet == '2sd': # flownet2
-            flownet.load_state_dict(torch.load('pretrained_flownet/FlowNet2-SD.pth')['state_dict'])
-        flownet.eval()
+    # load flownet
+    flownet.load_state_dict(torch.load('pretrained_flownet/FlowNet2-SD.pth')['state_dict'])
+    flownet.eval()
 
-        print('\n===========================================================')
-        print(f'Pretrained FlowNet({cfg.flownet}) Ok!')
-        print('===========================================================')
+    print('\n===========================================================')
+    print(f'Pretrained FlowNet({cfg.flownet}) Ok!')
+    print('===========================================================')
 
-    if cfg.segnet != None:
-        if cfg.segnet == 'deeplab': # deeplabv3
-            segnet.eval()
-        else:
-            NotImplementedError
+    # segmentation network mode change
+    segnet.eval()
 
-        print('\n===========================================================')
-        print(f'Pretrained Segmentation Network({cfg.segnet}) Ok!')
-        print('===========================================================')
+    print('\n===========================================================')
+    print(f'Pretrained Segmentation Network({cfg.segnet}) Ok!')
+    print('===========================================================')
 
 
 def load_scores(cfg):

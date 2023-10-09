@@ -68,7 +68,7 @@ python train.py --dataset=avenue --resume=g_best_auc_avenue --iters=15000 --val_
 
 ```Shell
 # check losses and psnr while training.
-tensorboard --logdir=tensorboard_log/{cfg.dataset}_bs{cfg.batch_size}
+tensorboard --logdir=tensorboard_log/{dataset_name}_bs{batch_size}
 ```
 
 ## Evaluation

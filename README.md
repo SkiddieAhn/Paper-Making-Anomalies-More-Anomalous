@@ -93,7 +93,7 @@ python eval.py --dataset=avenue --trained_model=a_best_auc_avenue
 ## Pre-trained models
 - Refer to the PyTorch tutorial and pre-download the ```deeplabv3_resnet101``` model to your environment.
 - Download the FlowNetv2 weight and put it under the ```pretrained_flownet``` folder.
-- Create a ```'weights'``` folder and put the pre-trained model weights in that folder.
+- Create a ```weights``` folder and put the pre-trained model weights in that folder.
   
 |   DeepLabv3     | FlowNetv2    |Ours    |
 |:--------------:|:-----------:|:-----------:|

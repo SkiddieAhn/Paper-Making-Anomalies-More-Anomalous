@@ -41,8 +41,8 @@ Other common packages.
 |[Official Site](http://www.svcl.ucsd.edu/projects/anomaly/dataset.htm)|[Official Site](https://www.cse.cuhk.edu.hk/leojia/projects/detectabnormal/dataset.html)|[Official Site](https://svip-lab.github.io/dataset/campus_dataset.html)|
   
 ## Training
-- In ```training/train_ing_func.py```, be sure to specify ```'save_path'``` and proceed with the training!
-- Keep in mind that the original code specifies different paths for saving the ```best model``` and the ```current model```.
+- When training starts, the ```tensorboard_log```, ```weights```, and ```results``` folders are automatically created.
+- All saved models are located in the ```weights``` folder.
   
 ```Shell
 # default option for generator training.
@@ -64,16 +64,22 @@ python train.py --dataset=avenue --resume=0_latest_ped2
 # destroyer training with pre-trained generator model.
 python train.py --dataset=avenue --resume=g_best_auc_avenue --iters=15000 --val_interval=100
 ```
+- Tensorboard visualization
+
+```Shell
+# check losses and psnr while training.
+tensorboard --logdir=tensorboard_log/{cfg.dataset}_bs{cfg.batch_size}
+```
 
 ## Evaluation
 - ```g_best_auc_avenue.pth``` contains only generator weights.
 ```Shell
-# recommended example code for generator evaluation.
+# recommended code for generator evaluation.
 python eval.py --dataset=avenue --trained_model=g_best_auc_avenue
 ```
 - ```a_best_auc_avenue.pth``` contains both generator weights and destroyer weights.
 ```Shell
-# recommended example code for destroyer evaluation.
+# recommended code for destroyer evaluation.
 python eval.py --dataset=avenue --trained_model=a_best_auc_avenue
 ```
 

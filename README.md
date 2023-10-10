@@ -54,6 +54,7 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
 ## Training
 - When training starts, the ```tensorboard_log```, ```weights```, and ```results``` folders are automatically created.
 - All saved models are located in the ```weights``` folder.
+- You can input ```dataset_name``` as one of the following choices: **ped2**, **avenue**, **shanghai**.
   
 ```Shell
 # default option for generator training.
@@ -67,7 +68,7 @@ python train.py --dataset={dataset_name} --save_interval=10000
 # change 'validation interval'.
 python train.py --dataset={dataset_name} --val_interval=1000
 # Continue training with latest model
-python train.py --dataset={dataset_name} --resume=0_latest_ped2
+python train.py --dataset={dataset_name} --resume=latest_{dataset_name}
 ```
 - When training the Destroyer, we set ```iters``` to **15,000** and ```val_interval``` to **100**.
 

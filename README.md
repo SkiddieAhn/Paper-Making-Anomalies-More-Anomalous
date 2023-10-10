@@ -33,9 +33,10 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
 
 
 ## Dependencies
-- PyTorch >= 1.1.  
-- Python >= 3.6.  
-- scikit-learn == 1.0.2.
+- python >= 3.8.  
+- torch = 1.11.0+cu113
+- torchvision = 0.12.0+cu113
+- scikit-learn = 1.0.2.
 - opencv-python  
 - matplotlib
 - einops  

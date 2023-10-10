@@ -33,12 +33,15 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
 
 
 ## Dependencies
-PyTorch >= 1.1.  
-Python >= 3.6.  
-opencv  
-sklearn  
-einops  
-Other common packages.  
+- PyTorch >= 1.1.  
+- Python >= 3.6.  
+- scikit-learn == 1.0.2.
+- opencv-python  
+- matplotlib
+- einops  
+- timm
+- pytorch_model_summary
+- Other common packages.
 
 ## Datasets
 - You can specify the dataset's path by editing ```'data_root'``` in ```config.py```.
@@ -53,23 +56,23 @@ Other common packages.
   
 ```Shell
 # default option for generator training.
-python train.py --dataset=avenue 
+python train.py --dataset={dataset_name} 
 # change 'seed'.
-python train.py --dataset=avenue --manualseed=50
+python train.py --dataset={dataset_name} --manualseed=50
 # change 'max iteration'.
-python train.py --dataset=avenue --iters=60000
+python train.py --dataset={dataset_name} --iters=60000
 # change 'model save interval'.
-python train.py --dataset=avenue --save_interval=10000
+python train.py --dataset={dataset_name} --save_interval=10000
 # change 'validation interval'.
-python train.py --dataset=avenue --val_interval=1000
+python train.py --dataset={dataset_name} --val_interval=1000
 # Continue training with latest model
-python train.py --dataset=avenue --resume=0_latest_ped2
+python train.py --dataset={dataset_name} --resume=0_latest_ped2
 ```
 - When training the Destroyer, we set ```iters``` to **15,000** and ```val_interval``` to **100**.
 
 ```Shell
 # destroyer training with pre-trained generator model.
-python train.py --dataset=avenue --resume=g_best_auc_avenue --iters=15000 --val_interval=100
+python train.py --dataset={dataset_name} --resume=g_best_auc_{dataset_name} --iters=15000 --val_interval=100
 ```
 - Tensorboard visualization
 
@@ -82,12 +85,12 @@ tensorboard --logdir=tensorboard_log/{dataset_name}_bs{batch_size}
 - ```g_best_auc_{dataset_name}.pth``` contains only generator weights.
 ```Shell
 # recommended code for generator evaluation.
-python eval.py --dataset=avenue --trained_model=g_best_auc_avenue
+python eval.py --dataset={dataset_name} --trained_model=g_best_auc_{dataset_name}
 ```
 - ```a_best_auc_{dataset_name}.pth``` contains both generator weights and destroyer weights.
 ```Shell
 # recommended code for destroyer evaluation.
-python eval.py --dataset=avenue --trained_model=a_best_auc_avenue
+python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name}
 ```
 
 ## Pre-trained models

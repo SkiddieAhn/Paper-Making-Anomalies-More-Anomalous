@@ -42,7 +42,6 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
 - matplotlib
 - einops  
 - timm
-- pytorch_model_summary
 - Other common packages.
 
 ## Datasets

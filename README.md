@@ -13,12 +13,12 @@ This new Generator excels at predicting normal frame but struggles with abnormal
 ## Architecture overview of Destroyer
 It's a Destroyer that takes generated future frame as input, **detects low-quality regions, and destroyes them**. This enhances the abnormality in the output. We trained the Destroyer using self-supervised learning because the training data doesn't include abnormal frames.
 
-<img width="936" alt="fig-destroyer" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/0c200851-5cfb-4ae2-a153-2f1704e095d4">
+<img width="936" alt="fig-destroyer" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/ede2a4d7-fff6-4b7d-a4f5-9caa4aec44a6">
 
 ## Model Training Process
 It's a **two-stage video anomaly detection method** based on <ins>unsupervised learning</ins> for the Generator and <ins>self-supervised learning</ins> for the Destroyer. Both models are individually optimized.
 
-<img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/ff772380-24b0-44a0-8a9b-5c86da0fbdae">
+<img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/9d216f30-951b-496e-b02d-31c30412a2ab">
 
 ## Results
 AUC comparison with the state of the art methods. Best results are **bolded**. Best seconds are <ins>underlined</ins>.  

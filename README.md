@@ -99,6 +99,7 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
 - Refer to the PyTorch tutorial and pre-download the ```deeplabv3_resnet101``` model to your environment.
 - Download the FlowNetv2 weight and put it under the ```pretrained_flownet``` folder.
 - Create a ```weights``` folder and put the pre-trained model weights in that folder.
+- If the specified conditions in the ```Dependencies``` are different, the **AUC** may **different**.
   
 |   DeepLabv3     | FlowNetv2    |Ours    |
 |:--------------:|:-----------:|:-----------:|

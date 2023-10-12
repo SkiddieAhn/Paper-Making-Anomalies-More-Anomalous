@@ -41,7 +41,6 @@ def update_config(args=None, mode=None):
         share_config['manualseed'] = args.manualseed
 
     if mode == 'test':
-        share_config['best_model'] = args.best_model
         share_config['show_status'] = args.show_status
 
     if mode == 'train' and (args.dataset == 'ped2' or args.dataset == 'ped1'):
@@ -72,8 +71,8 @@ def update_config(args=None, mode=None):
 
     elif mode == 'train' and args.dataset == 'shanghai':
         share_config['batch_size'] = args.batch_size
-        share_config['train_data'] = share_config['data_root_s'] + args.dataset + '/training/'
-        share_config['test_data'] = share_config['data_root_s'] + args.dataset + '/testing/'
+        share_config['train_data'] = share_config['data_root'] + args.dataset + '/training/'
+        share_config['test_data'] = share_config['data_root'] + args.dataset + '/testing/'
         share_config['a_lr'] = 0.0002
         share_config['g_lr'] = 0.0002
         share_config['d_lr'] = 0.00002

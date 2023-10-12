@@ -14,9 +14,9 @@ from network.non_generator.flownet2.models import FlowNet2SD
 from einops import rearrange
 
 
-def z_score(arr):
+def z_score(arr, eps=1e-8):
     mean = np.mean(arr)
-    std_dev = np.std(arr)
+    std_dev = np.std(arr) + eps  # Avoid division by zero
     z_scores = (arr - mean) / std_dev
     return z_scores
 

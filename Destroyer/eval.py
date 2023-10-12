@@ -52,7 +52,7 @@ def val(cfg, train_scores=None, models=None, iter=None, train=False):
     ========================================
     '''
     if train == False:
-        generator = GUNet(gamma=3, input_channels1=12, input_channels2=6, input_channels3=84, output_channels=3).cuda().eval()
+        generator = GUNet(input_channels1=12, input_channels2=6, input_channels3=84, output_channels=3).cuda().eval()
         autoencoder = DUNet(3, 3).cuda().eval()
 
         # load weight

@@ -106,10 +106,10 @@ def load_models(cfg, generator, discriminator, autoencoder, flownet, segnet, opt
     else:
         generator.apply(proposed_weights_init)
         discriminator.apply(weights_init_normal)
-        autoencoder.apply(ae_weights_init_normal)
+        autoencoder.apply(weights_init_normal)
 
     print('\n===========================================================')
-    print(f'Generator({cfg.generator}), Discriminator, AutoEncoder({cfg.autoencoder}) Ok!')
+    print(f'Generator, Discriminator, AutoEncoder Ok!')
     print('===========================================================')
 
     # load flownet
@@ -117,14 +117,14 @@ def load_models(cfg, generator, discriminator, autoencoder, flownet, segnet, opt
     flownet.eval()
 
     print('\n===========================================================')
-    print(f'Pretrained FlowNet({cfg.flownet}) Ok!')
+    print(f'Pretrained FlowNet Ok!')
     print('===========================================================')
 
     # change segnet mode
     segnet.eval()
 
     print('\n===========================================================')
-    print(f'Pretrained Segmentation Network({cfg.segnet}) Ok!')
+    print(f'Pretrained Segmentation Network Ok!')
     print('===========================================================')
 
 

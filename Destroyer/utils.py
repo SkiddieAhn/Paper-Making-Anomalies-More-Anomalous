@@ -5,7 +5,6 @@ from timm.models.layers import trunc_normal_
 import numpy as np
 from math import exp
 from torch import nn
-from network.non_generator.autoencoder import DSConv, DSConvT
 import matplotlib as plt
 from training.ssim_set import ssim_error
 from torch.nn.modules.distance import PairwiseDistance
@@ -139,17 +138,6 @@ def proposed_weights_init(m):
     elif isinstance(m, (nn.LayerNorm)):
         nn.init.constant_(m.bias, 0)
         nn.init.constant_(m.weight, 1.0)
-
-# 오토인코더용
-def ae_weights_init_normal(m):
-    if isinstance(m, (DSConv, DSConvT)):
-        if hasattr(m.depthwise, 'weight'):
-            torch.nn.init.normal_(m.depthwise.weight.data, 0.0, 0.02)
-        if hasattr(m.pointwise, 'weight'):
-            torch.nn.init.normal_(m.pointwise.weight.data, 0.0, 0.02)
-    elif isinstance(m, nn.BatchNorm2d):
-        torch.nn.init.normal_(m.weight.data, 1.0, 0.02)
-        torch.nn.init.constant_(m.bias.data, 0.0)
 
 
 def make_colorwheel():

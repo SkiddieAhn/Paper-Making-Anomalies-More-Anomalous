@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from pytorch_model_summary import summary
 
 
 
@@ -95,7 +94,6 @@ if __name__=="__main__":
     x = torch.ones([4, 12, 256, 256]).cuda()
     model = UNet(12, 3).cuda()
 
-    print(summary(model,x))
     print('input:',x.shape)
     print('output:',model(x).shape)
     print('===================================')

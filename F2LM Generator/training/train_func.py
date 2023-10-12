@@ -134,9 +134,9 @@ def training(cfg, dataset, dataloader, models, losses, opts, schs, scores):
                         lr_d = opts['optimizer_D'].param_groups[0]['lr']
 
                         # show psnr, loss, time, lr
-                        print(f"[{scores['step']}] G_l: {G_l:.3f} | D_l: {D_l:.3f} | psnr(g): {f_psnr:.3f} | best_apsnr(g): {scores['g_best_apsnr']:.3f} | "\
-                              f"best_auc(g): {scores['g_best_auc']:.3f} |"\
-                              f"iter_t: {iter_t:.3f}s | remain_t: {eta} | lr_g: {lr_g:.7f} | lr_d: {lr_d:.7f}")
+                        print(f"[{scores['step']}] G_l: {G_l:.3f} | D_l: {D_l:.3f} | psnr(g): {f_psnr:.3f} | "\
+                            f"best_auc(g): {scores['g_best_auc']:.3f} | "\
+                            f"iter_t: {iter_t:.3f}s | remain_t: {eta} | lr_g: {lr_g:.7f} | lr_d: {lr_d:.7f}")
                         
                         # write psnr, loss, lr
                         writer.add_scalar('psnr/train_psnr', f_psnr, global_step=scores['step'])

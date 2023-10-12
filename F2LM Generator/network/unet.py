@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from pytorch_model_summary import summary
 
 # Squeeze and Excitation block
 class SELayer(nn.Module):
@@ -171,8 +170,4 @@ if __name__=="__main__":
     x3 = torch.ones([4, 84, 256, 256]).cuda()
     model = UNet(12, 6, 84, 3).cuda()
 
-    print(summary(model,x1, x2, x3))
-    print('input:',x1.shape, x2.shape, x3.shape)
-    print('output:',model(x1,x2,x3)[0].shape)
-    print('===================================')
     print(model.parameters)

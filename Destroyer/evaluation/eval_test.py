@@ -15,9 +15,9 @@ from network.non_generator.flownet2.models import FlowNet2SD
 from einops import rearrange
 
 
-def z_score(arr):
+def z_score(arr, eps=1e-8):
     mean = np.mean(arr)
-    std_dev = np.std(arr)
+    std_dev = np.std(arr) + eps  # Avoid division by zero
     z_scores = (arr - mean) / std_dev
     return z_scores
 
@@ -63,6 +63,10 @@ def val_test_eval(cfg, generator, autoencoder, iter):
             # Testing Log
             if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/generator"):
                 os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/generator")
+            if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/autoencoder"):
+                os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/autoencoder")
+            if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/target"):
+                os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/target")
 
             one_video = Dataset.test_dataset(cfg, folder)
 

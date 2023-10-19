@@ -16,7 +16,7 @@ It's a Destroyer that takes generated future frame as input, **detects low-quali
 <img width="936" alt="fig-destroyer" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/ede2a4d7-fff6-4b7d-a4f5-9caa4aec44a6">
 
 ## Model Training Process
-It's a **two-stage video anomaly detection method** based on <ins>unsupervised learning</ins> for the Generator and <ins>self-supervised learning</ins> for the Destroyer. Both models are individually optimized.
+It's a **two-stage video anomaly detection method** based on <ins>unsupervised learning</ins> for the F2LM Generator and <ins>self-supervised learning</ins> for the Destroyer. Both models are individually optimized.
 
 <img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/638c8b69-7c55-45b6-9116-fa342717ddc7">
 

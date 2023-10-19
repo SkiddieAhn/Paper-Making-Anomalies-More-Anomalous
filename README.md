@@ -3,7 +3,7 @@
 This repository is the ```official open-source``` of [Making Anomalies More Anomalous: Video Anomaly Detection using New Generator and Destroyer](http://)
 by Seungkyun Hong, Sunghyun Ahn, Youngwan Jo and Sanghyun Park. 
 
-Seungkyun Hong and Sunghyun Ahn are equal contributors to this work and designated as co-first authors.
+Seungkyun Hong and <ins>Sunghyun Ahn</ins> are equal contributors to this work and designated as co-first authors.
 
 ## Architecture overview of F2LM Generator
 This new Generator excels at predicting normal frame but struggles with abnormal one. It includes a module to **transform normal feature** in bottleneck areas, reducing its ability to generate abnormal frame.
@@ -18,7 +18,7 @@ It's a Destroyer that takes generated future frame as input, **detects low-quali
 ## Model Training Process
 It's a **two-stage video anomaly detection method** based on <ins>unsupervised learning</ins> for the Generator and <ins>self-supervised learning</ins> for the Destroyer. Both models are individually optimized.
 
-<img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/9d216f30-951b-496e-b02d-31c30412a2ab">
+<img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/638c8b69-7c55-45b6-9116-fa342717ddc7">
 
 ## Results
 AUC comparison with the state of the art methods. Best results are **bolded**. Best seconds are <ins>underlined</ins>.  
@@ -29,7 +29,7 @@ We compared our model with prominent papers published from 2016 to 2023.
 ## Qualitative Comparison
 The Destroyer model enhances abnormality by destroying abnormal areas, resulting in a **larger gap in Anomaly Scores** between normal and abnormal data and an increased AUC.
 
-<img width="936" alt="mama_visualization" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/5252afcb-fb6a-4591-8731-9ba1b78adfd3">
+<img width="936" alt="mama_visualization" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/101d5544-99e9-49b6-8d83-85f8c4e1eded">
 
 
 ## Dependencies

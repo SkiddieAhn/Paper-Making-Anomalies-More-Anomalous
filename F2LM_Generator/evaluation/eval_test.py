@@ -141,6 +141,8 @@ def val_test_eval(cfg, generator, _, iter):
     '''
     video_length = len(g_sse_group)
     best_auc = 0 
+    best_fpr = 0
+    best_tpr = 0
     best_weight = []
 
     for a in np.arange(0.1, 4.9, 0.1):
@@ -178,11 +180,13 @@ def val_test_eval(cfg, generator, _, iter):
 
             # best model
             if auc > best_auc:
-                best_auc = auc    
+                best_auc = auc
+                best_fpr = fpr
+                best_tpr = tpr    
                 best_weight = [a, b, c]
 
     # Report AUC
-    save_auc_graph_test(fpr, tpr, best_auc, file_path=f'results/{dataset_name}/{iter}/g_total_auc_curve.jpg')
+    save_auc_graph_test(best_fpr, best_tpr, best_auc, file_path=f'results/{dataset_name}/{iter}/g_total_auc_curve.jpg')
     save_text(f"generator auc: {best_auc} auc, weight: {best_weight}\n\n", f'results/{dataset_name}/{iter}/g_auc.txt')
     print(f'generator auc: {best_auc} auc\n')
 

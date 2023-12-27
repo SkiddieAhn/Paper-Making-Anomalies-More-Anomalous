@@ -6,7 +6,8 @@ by Seungkyun Hong, Sunghyun Ahn, Youngwan Jo and Sanghyun Park.
 Seungkyun Hong and <ins>Sunghyun Ahn</ins> are equal contributors to this work and designated as co-first authors.
 
 ## Architecture overview of F2LM Generator
-This new Generator excels at predicting normal frame but struggles with abnormal one. It includes a module to **transform normal feature** in bottleneck areas, reducing its ability to generate abnormal frame.
+This new Generator excels at predicting normal frame but struggles with abnormal one. It includes a module to **transform frame feature to label and motion feature** in bottleneck areas, reducing its ability to generate abnormal frame.
+If a frame with abnormal objects or behavior is inputted, the transformation from frame features to other features becomes challenging, incurring a penalty in predicting future frames.
 
 <img width="936" alt="fig-generator" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/5c4f4ab5-b12e-4e31-8acd-3899e285eed2">
 

@@ -113,6 +113,7 @@ We observed a **1.6% performance improvement** on the ```UCSD Ped2``` dataset by
 
 - You can evaluate performance by using the following command.
 ```Shell
+# recommended code for destroyer evaluation with 1-D gaussian filter.
 python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name} --gaussian=True --show_status=True
 ```
 

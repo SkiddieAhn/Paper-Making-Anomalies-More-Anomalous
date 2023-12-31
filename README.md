@@ -9,7 +9,7 @@ Seungkyun Hong and <ins>Sunghyun Ahn</ins> are equal contributors to this work a
 This new Generator excels at predicting normal frame but struggles with abnormal one. It includes a module to **transform frame feature to label and motion feature** in bottleneck areas, reducing its ability to generate abnormal frame.
 If a frame with abnormal objects or behavior is inputted, the transformation from frame features to other features becomes challenging, incurring a penalty in predicting future frames.
 
-<img width="936" alt="fig-generator" src="https://github.com/SkiddieAhn/Paper-Making-Anomalies-More-Anomalous/assets/52392658/3cd66dfd-4e5f-467e-b954-88f75925225a">
+<img width="936" alt="fig-generator" src="https://github.com/SkiddieAhn/Paper-Making-Anomalies-More-Anomalous/assets/52392658/bb76e127-b4c4-4502-b7da-aa960b3a3aa1">
 
 ## Architecture overview of Destroyer
 It's a Destroyer that takes generated future frame as input, **detects low-quality regions, and destroyes them**. This enhances the abnormality in the output. We trained the Destroyer using self-supervised learning because the training data doesn't include abnormal frames.

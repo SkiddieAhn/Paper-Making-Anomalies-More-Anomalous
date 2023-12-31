@@ -42,6 +42,8 @@ def update_config(args=None, mode=None):
 
     if mode == 'test':
         share_config['show_status'] = args.show_status
+        share_config['save_data'] = args.save_data
+        share_config['gaussian'] = args.gaussian
 
     if mode == 'train' and (args.dataset == 'ped2' or args.dataset == 'ped1'):
         share_config['batch_size'] = args.batch_size

@@ -16,9 +16,11 @@ from network.unet import UNet
 
 
 parser = argparse.ArgumentParser(description='MAMA_Generator')
-parser.add_argument('--dataset', default='avenue', type=str, help='The name of the dataset to train.')
+parser.add_argument('--dataset', default='avenue', type=str, help='The name of the dataset to evaluate.')
 parser.add_argument('--trained_model', default=None, type=str, help='The pre-trained model to evaluate.')
 parser.add_argument('--show_status', default=False, type=bool, help='show status')
+parser.add_argument('--save_data', default=False, type=bool, help='save image, psnr')
+parser.add_argument('--gaussian', default=False, type=bool, help='use gauissian 1d filter to Anomaly Score.')
 
 
 def val(cfg, train_scores=None, models=None, iter=None, train=False):

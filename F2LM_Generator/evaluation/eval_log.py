@@ -18,13 +18,15 @@ def save_graph(answers_idx, scores, file_path, threshold=-1, x='Frame', y='PSNR'
     plt.savefig(file_path)
 
 
-def save_auc_graph_test(fpr, tpr, auc, file_path):
+def save_auc_graph_test(fpr, tpr, auc, file_path, eer=None):
     plt.clf()
-    plt.plot(fpr, tpr, label=f'ROC curve (area = {auc:.2f})')
+    plt.plot(fpr, tpr, label=f'ROC curve (area = {auc:.3f})')
     plt.plot([0,1], [0,1], 'k--')
     plt.xlabel('False Positive Rate (FRR)')
     plt.ylabel('True Positive Rate (TRR)')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
+    if eer != None:        
+        plt.scatter([eer], [1 - eer], color='r', marker='o', label=f'EER ({eer:.3f})')
     plt.legend()
     plt.savefig(file_path)
 

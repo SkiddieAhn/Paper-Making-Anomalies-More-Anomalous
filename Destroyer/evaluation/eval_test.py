@@ -3,7 +3,7 @@ import copy
 import torch 
 from sklearn import metrics
 from evaluation.eval_log import * 
-from sklearn.cluster import KMeans
+from scipy.ndimage import gaussian_filter1d
 
 from config import update_config
 from Dataset import Label_loader
@@ -13,6 +13,18 @@ from torchvision.utils import save_image
 import numpy as np
 from network.non_generator.flownet2.models import FlowNet2SD
 from einops import rearrange
+
+
+def calculate_eer(fpr, tpr):
+    min_diff = float('inf')
+    eer = 0.0
+
+    for i in range(len(fpr)):
+        diff = abs(fpr[i] - (1 - tpr[i]))
+        if diff < min_diff:
+            min_diff = diff
+            eer = fpr[i]
+    return eer
 
 
 def z_score(arr, eps=1e-8):
@@ -60,13 +72,14 @@ def val_test_eval(cfg, generator, autoencoder, iter):
     '''
     with torch.no_grad():
         for i, folder in enumerate(video_folders):
-            # Testing Log
-            if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/generator"):
-                os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/generator")
-            if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/autoencoder"):
-                os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/autoencoder")
-            if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/target"):
-                os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/target")
+            if cfg.save_data:
+                # Testing Log
+                if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/generator"):
+                    os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/generator")
+                if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/autoencoder"):
+                    os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/autoencoder")
+                if not os.path.exists(f"results/{dataset_name}/{iter}/f{i+1}/target"):
+                    os.makedirs(f"results/{dataset_name}/{iter}/f{i+1}/target")
 
             one_video = Dataset.test_dataset(cfg, folder)
 
@@ -74,9 +87,6 @@ def val_test_eval(cfg, generator, autoencoder, iter):
             a_video_sse = []
             g_video_siml_m = []
             g_video_siml_l = []
-
-            g_psnrs = [] # generator psnrs
-            a_psnrs = [] # autoencoder psnrs
 
             for j, clip in enumerate(one_video):
                 # make frame input
@@ -123,20 +133,19 @@ def val_test_eval(cfg, generator, autoencoder, iter):
                 g_test_siml_l = SIM_LOSS(anchor=ftol_feature, positive=label_feature, negative=frame_feature).cpu().detach().numpy()
                 g_video_siml_l.append(float(g_test_siml_l))
 
-                g_test_psnr = psnr_error(G_frame, target_frame).cpu().detach().numpy()
-                g_psnrs.append(float(g_test_psnr))
+                if cfg.save_data:
+                    g_test_psnr = psnr_error(G_frame, target_frame).cpu().detach().numpy()
+                    a_test_psnr = psnr_error(A_frame, target_frame).cpu().detach().numpy()
 
-                a_test_psnr = psnr_error(A_frame, target_frame).cpu().detach().numpy()
-                a_psnrs.append(float(a_test_psnr))
+                    g_res_temp = ((G_frame[0] + 1 ) / 2)[(2,1,0),...]
+                    a_res_temp = ((A_frame[0] + 1 ) / 2)[(2,1,0),...]
+                    t_res_temp = ((target_frame[0] + 1 ) / 2)[(2,1,0),...]
 
-                g_res_temp = ((G_frame[0] + 1 ) / 2)[(2,1,0),...]
-                a_res_temp = ((A_frame[0] + 1 ) / 2)[(2,1,0),...]
-                t_res_temp = ((target_frame[0] + 1 ) / 2)[(2,1,0),...]
-                save_image(g_res_temp, f'results/{dataset_name}/{iter}/f{i+1}/generator/{j}_img.jpg')
-                save_image(a_res_temp, f'results/{dataset_name}/{iter}/f{i+1}/autoencoder/{j}_img.jpg')
-                save_image(t_res_temp, f'results/{dataset_name}/{iter}/f{i+1}/target/{j}_img.jpg')
-                save_text(f"[Generator] {j}: {g_test_psnr} psnr", f'results/{dataset_name}/{iter}/f{i+1}/generator/psnrs.txt')
-                save_text(f"[AutoEncoder] {j}: {a_test_psnr} psnr", f'results/{dataset_name}/{iter}/f{i+1}/autoencoder/psnrs.txt')
+                    save_image(g_res_temp, f'results/{dataset_name}/{iter}/f{i+1}/generator/{j}_img.jpg')
+                    save_image(a_res_temp, f'results/{dataset_name}/{iter}/f{i+1}/autoencoder/{j}_img.jpg')
+                    save_image(t_res_temp, f'results/{dataset_name}/{iter}/f{i+1}/target/{j}_img.jpg')
+                    save_text(f"[Generator] {j}: {g_test_psnr} psnr", f'results/{dataset_name}/{iter}/f{i+1}/generator/psnrs.txt')
+                    save_text(f"[AutoEncoder] {j}: {a_test_psnr} psnr", f'results/{dataset_name}/{iter}/f{i+1}/autoencoder/psnrs.txt')
                 
                 torch.cuda.synchronize()
                 end = time.time()
@@ -174,10 +183,11 @@ def val_test_eval(cfg, generator, autoencoder, iter):
         
         video_length = len(sse_group)
 
-        best_auc = 0
-        best_fpr = 0
-        best_tpr = 0
+        best_fpr = []
+        best_tpr = []
         best_weight = []
+        best_auc = 0
+        best_eer = 0 
 
         for a in np.arange(0.1, 4.9, 0.1):
             a = round(a, 1)
@@ -211,6 +221,9 @@ def val_test_eval(cfg, generator, autoencoder, iter):
                             distance = (a*siml_m)+(b*siml_l)+(c*sse)+(d*sse2)
                             
                         distance = min_max_normalize(distance)
+                        # use gaussian 1d filter to Anomaly Score
+                        if cfg.gaussian:
+                            distance = gaussian_filter1d(distance, sigma=10)
 
                         label = gt[i][4:]
                         scores = np.concatenate((scores, distance), axis=0)
@@ -224,6 +237,7 @@ def val_test_eval(cfg, generator, autoencoder, iter):
                         best_auc = auc
                         best_fpr = fpr
                         best_tpr = tpr    
+                        best_eer = calculate_eer(fpr=best_fpr, tpr=best_tpr)
                         if net == 'Generator':    
                             best_weight = [a, b, c]
                             break
@@ -232,12 +246,12 @@ def val_test_eval(cfg, generator, autoencoder, iter):
 
         # Report AUC
         if net == 'Generator':
-            save_auc_graph_test(best_fpr, best_tpr, best_auc, file_path=f'results/{dataset_name}/{iter}/g_total_auc_curve.jpg')
-            save_text(f"generator auc: {best_auc} auc, weight: {best_weight}\n\n", f'results/{dataset_name}/{iter}/g_auc.txt')
-            print(f'generator auc: {best_auc} auc\n')
+            save_auc_graph_test(best_fpr, best_tpr, best_auc, eer=best_eer, file_path=f'results/{dataset_name}/{iter}/g_total_auc_curve.jpg')
+            save_text(f"generator auc/eer: {best_auc} auc, {best_eer} eer, weight: {best_weight}\n\n", f'results/{dataset_name}/{iter}/g_auc.txt')
+            print(f'generator auc/eer: {best_auc} auc, {best_eer} eer\n')
         else:
-            save_auc_graph_test(best_fpr, best_tpr, best_auc, file_path=f'results/{dataset_name}/{iter}/a_total_auc_curve.jpg')
-            save_text(f"autoencoder auc: {best_auc} auc, weight: {best_weight}\n\n", f'results/{dataset_name}/{iter}/a_auc.txt')
-            print(f'autoencoder auc: {best_auc} auc\n')
+            save_auc_graph_test(best_fpr, best_tpr, best_auc, eer=best_eer, file_path=f'results/{dataset_name}/{iter}/a_total_auc_curve.jpg')
+            save_text(f"autoencoder auc/eer: {best_auc} auc, {best_eer} eer, weight: {best_weight}\n\n", f'results/{dataset_name}/{iter}/a_auc.txt')
+            print(f'autoencoder auc/eer: {best_auc} auc, {best_eer} eer\n')
 
 

@@ -22,10 +22,10 @@ It's a **two-stage video anomaly detection method** based on <ins>unsupervised l
 <img width="936" alt="fig-traing" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/638c8b69-7c55-45b6-9116-fa342717ddc7">
 
 ## Results
-AUC comparison with the state of the art methods. Best results are **bolded**. Best seconds are <ins>underlined</ins>.  
-We compared our model with prominent papers published from 2016 to 2023.
+**AUC and EER comparison** with the state-of-the-art methods on ```UCSD Ped2```, ```CUHK Avenue```, and ```Shanghai Tech.```
+Best results are **bolded**. Best seconds are <ins>underlined</ins>. We compared our model with prominent papers published from 2018 to 2023.
 
-<img width="936" alt="mama_sota" src="https://github.com/SkiddieAhn/SkiddieAhn/assets/52392658/9b214fe4-88c7-495d-aebc-903ffe73e755">
+<img width="936" alt="results" src="https://github.com/SkiddieAhn/Paper-Making-Anomalies-More-Anomalous/assets/52392658/0254fbf8-b965-45b5-bc7e-8eeacf0c05f6">
 
 ## Qualitative Comparison
 The Destroyer model enhances abnormality by destroying abnormal areas, resulting in a **larger gap in Anomaly Scores** between normal and abnormal data and an increased AUC.
@@ -105,6 +105,16 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
 |   DeepLabv3     | FlowNetv2    |Ours    |
 |:--------------:|:-----------:|:-----------:|
 |[PyTorch Tutorial](https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/)|[Google Drive](https://drive.google.com/file/d/1G3p84hzYRTCboNnJTb3iLwIPiHeNg-D_/view?usp=drive_link)|[Google Drive](https://drive.google.com/file/d/1oMopZL4qAI1dIzrABu-J-wJpE0q1ge5F/view?usp=sharing)|
+
+## Additional material
+We observed a **1.6% performance improvement** on the ```UCSD Ped2``` dataset by applying a <ins>Gaussian 1D filter</ins> to the anomaly score in our model. However, we refrained from conducting performance comparisons in the paper for fairness.
+
+<img width="750" alt="auc-gaussian" src="https://github.com/SkiddieAhn/Paper-Making-Anomalies-More-Anomalous/assets/52392658/1e364b5c-a69a-46a7-bd60-cbf775532a99">
+
+- You can evaluate performance by using the following command.
+```Shell
+python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name} --gaussian=True --show_status=True
+```
 
 ## Citation
 If you use our work, please consider citing:  

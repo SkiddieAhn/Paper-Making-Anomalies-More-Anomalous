@@ -122,3 +122,6 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
 If you use our work, please consider citing:  
   
 **TBD**
+
+## Contact
+Should you have any question, please create an issue on this repository or contact me at skd@yonsei.ac.kr.

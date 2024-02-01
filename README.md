@@ -1,4 +1,4 @@
-# Making Anomalies More Anomalous: Video Anomaly Detection using New Generator and Destroyer
+# Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer
 
 This repository is the ```official open-source``` of [Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer](http://)
 by Seungkyun Hong, Sunghyun Ahn, Youngwan Jo and Sanghyun Park. 

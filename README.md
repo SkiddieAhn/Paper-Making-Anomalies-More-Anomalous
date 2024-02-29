@@ -108,7 +108,7 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
 |[PyTorch Tutorial](https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/)|[Google Drive](https://drive.google.com/file/d/1G3p84hzYRTCboNnJTb3iLwIPiHeNg-D_/view?usp=drive_link)|[Google Drive](https://drive.google.com/file/d/1oMopZL4qAI1dIzrABu-J-wJpE0q1ge5F/view?usp=sharing)|
 
 ## Additional material
-We observed a **1.6% performance improvement** on the ```UCSD Ped2``` dataset by applying a <ins>Gaussian 1D filter</ins> to the anomaly score in our model. However, we refrained from conducting performance comparisons in the paper for fairness.
+We observed a **1.6% performance improvement** on the ```UCSD Ped2``` dataset by applying a <ins>Gaussian 1D filter</ins> to the anomaly score in our model. However, we chose not to conduct performance comparisons in the paper to maintain fairness.
 
 <img width="750" alt="auc-gaussian" src="https://github.com/SkiddieAhn/Paper-Making-Anomalies-More-Anomalous/assets/52392658/1e364b5c-a69a-46a7-bd60-cbf775532a99">
 

@@ -1,6 +1,6 @@
 # Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer
 
-This repository is the ```official open-source``` of [Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer](http://)
+This repository is the ```official open-source``` of [Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer](https://ieeexplore.ieee.org/document/10462109/)
 by Seungkyun Hong, Sunghyun Ahn, Youngwan Jo and Sanghyun Park. 
 
 Seungkyun Hong and <ins>Sunghyun Ahn</ins> are equal contributors to this work and designated as co-first authors.
@@ -120,8 +120,15 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
 
 ## Citation
 If you use our work, please consider citing:  
-  
-**TBD**
+```Shell
+@article{hong2024making,
+  title={Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer},
+  author={Hong, Seungkyun and Ahn, Sunghyun and Jo, Youngwan and Park, Sanghyun},
+  journal={IEEE Access},
+  year={2024},
+  publisher={IEEE}
+}
+```
 
 ## Contact
 Should you have any question, please create an issue on this repository or contact me at skd@yonsei.ac.kr.

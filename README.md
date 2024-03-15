@@ -121,16 +121,6 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
 ## Citation
 If you use our work, please consider citing:  
 ```Shell
-@article{hong2024making,
-  title={Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer},
-  author={Hong, Seungkyun and Ahn, Sunghyun and Jo, Youngwan and Park, Sanghyun},
-  journal={IEEE Access},
-  year={2024},
-  publisher={IEEE}
-}
-
-
-
 @article{Hong2024MakingAM,
   title={Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer}, 
   author={Seungkyun Hong and Sunghyun Ahn and Youngwan Jo and Sanghyun Park},

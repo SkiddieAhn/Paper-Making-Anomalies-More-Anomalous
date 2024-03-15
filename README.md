@@ -128,6 +128,18 @@ If you use our work, please consider citing:
   year={2024},
   publisher={IEEE}
 }
+
+
+
+@article{Hong2024MakingAM,
+  title={Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer}, 
+  author={Seungkyun Hong and Sunghyun Ahn and Youngwan Jo and Sanghyun Park},
+  journal={IEEE Access},
+  year={2024},
+  volume={12},
+  pages={36712-36726},
+}
+
 ```
 
 ## Contact

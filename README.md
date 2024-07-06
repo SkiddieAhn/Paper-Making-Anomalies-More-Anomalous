@@ -1,9 +1,7 @@
 # Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer
 
 This repository is the ```official open-source``` of [Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer](https://ieeexplore.ieee.org/document/10462109/)
-by Seungkyun Hong, Sunghyun Ahn, Youngwan Jo and Sanghyun Park. 
-
-Seungkyun Hong and <ins>Sunghyun Ahn</ins> are equal contributors to this work and designated as co-first authors.
+by Seungkyun Hong*, Sunghyun Ahn*, Youngwan Jo and Sanghyun Park. ```(*equally contributed)```
 
 ## Architecture overview of F2LM Generator
 This new Generator excels at predicting normal frame but struggles with abnormal one. It includes a module to **transform frame feature to label and motion feature** in bottleneck areas, reducing its ability to generate abnormal frame.

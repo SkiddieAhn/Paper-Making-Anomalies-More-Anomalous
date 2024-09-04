@@ -60,6 +60,7 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
 |[Official Site](http://www.svcl.ucsd.edu/projects/anomaly/dataset.htm)|[Official Site](https://www.cse.cuhk.edu.hk/leojia/projects/detectabnormal/dataset.html)|[Official Site](https://svip-lab.github.io/dataset/campus_dataset.html)|
   
 ## Training
+- Navigate to the ```F2LM_Generator``` directory and enter the following command.
 - When training starts, the ```tensorboard_log```, ```weights```, and ```results``` folders are automatically created.
 - All saved models are located in the ```weights``` folder.
 - You can input ```dataset_name``` as one of the following choices: **ped2**, **avenue**, **shanghai**.
@@ -78,6 +79,8 @@ python train.py --dataset={dataset_name} --val_interval=1000
 # Continue training with latest model
 python train.py --dataset={dataset_name} --resume=latest_{dataset_name}
 ```
+- Navigate to the ```Destroyer``` directory and enter the following command.
+- Before training, save the pretrained Generator weights in the ```Destroyer/weights``` directory.
 - When training the Destroyer, we set ```iters``` to **15,000** and ```val_interval``` to **100**.
 
 ```Shell

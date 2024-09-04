@@ -3,17 +3,15 @@ import torch
 def make_models_dict(models, opts, scores):
     model_dict = {'net_g': models['generator'].state_dict(), 'optimizer_g': opts['optimizer_G'].state_dict(),
                 'net_d': models['discriminator'].state_dict(), 'optimizer_d': opts['optimizer_D'].state_dict(),
-                'net_a': models['autoencoder'].state_dict(), 'optimizer_a': opts['optimizer_A'].state_dict(),
                 'step':int(scores['step']), 'iter_list':scores['iter_list'], 
-                'g_best_auc':float(scores['g_best_auc']), 'a_best_auc':float(scores['a_best_auc']), 
-                'g_auc_list':scores['g_auc_list'], 'a_auc_list':scores['a_auc_list'],}
+                'g_best_auc':float(scores['g_best_auc']), 'g_auc_list':scores['g_auc_list']}
     return model_dict
 
 
 def update_best_model(score_type, score, model_type, iteration, cfg, models, opts, scores):
     '''
-    * score_type: g_best_auc, a_best_auc
-    * model_type: g, a
+    * score_type: g_best_auc
+    * model_type: g
     '''
     if score > scores[score_type]:
         scores[score_type] = score

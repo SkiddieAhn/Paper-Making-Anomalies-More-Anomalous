@@ -6,9 +6,9 @@ import numpy as np
 from torch.nn.modules.distance import PairwiseDistance
 
 
-class cosine_similarity_loss(torch.nn.Module):
+class Triplet_loss(torch.nn.Module):
     def __init__(self, margin=0.2):
-        super(cosine_similarity_loss, self).__init__()
+        super(Triplet_loss, self).__init__()
         self.margin = margin
         self.pdist = PairwiseDistance(2)
 

@@ -39,27 +39,22 @@ def main():
     train_dataloader = DataLoader(dataset=train_dataset, batch_size=train_cfg.batch_size, shuffle=True, num_workers=4, drop_last=True)
     print_infor(cfg=train_cfg, dataloader=train_dataloader)
 
-    # input size
-    train_img_size=[3, 4, train_cfg.img_size[0], train_cfg.img_size[1]]
-
     # define models
-    generator, discriminator, autoencoder, flownet, segnet = def_models(cfg=train_cfg, train_img_size=train_img_size)
-
-    # define destroyer loss -> 'training/train_func.py'
+    generator, autoencoder, flownet, segnet = def_models()
 
     # define optimizer and scheduler
-    optimizer_G, optimizer_D, optimizer_A, sch_G, sch_D, sch_A = def_optim_sch(train_cfg, generator, discriminator, autoencoder)
+    optimizer_A, sch_A = def_optim_sch(train_cfg, autoencoder)
 
     # load models
-    load_models(train_cfg, generator, discriminator, autoencoder, flownet, segnet, optimizer_G, optimizer_D, optimizer_A)
+    load_models(train_cfg, generator, autoencoder, flownet, segnet)
 
     # load scores
-    scores = load_scores(train_cfg)
+    scores = load_scores()
 
     # make dict
-    models = make_model_dict(generator, discriminator, autoencoder, flownet, segnet)
-    opts = make_opt_dict(optimizer_G, optimizer_D, optimizer_A)
-    schs = make_sch_dict(train_cfg, sch_G, sch_D, sch_A)
+    models = make_model_dict(generator, autoencoder, flownet, segnet)
+    opts = make_opt_dict(optimizer_A)
+    schs = make_sch_dict(train_cfg, sch_A)
 
 
     '''

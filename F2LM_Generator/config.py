@@ -14,7 +14,7 @@ if not os.path.exists('results'):
 share_config = {'mode': 'training',
                 'dataset': 'avenue',
                 'img_size': (256, 256),
-                'data_root': '/datasets/anomalyDataset/'}  # remember the final '/'
+                'data_root': '/home/sha/datasets/'}  # remember the final '/'
 
 
 class dict2class:

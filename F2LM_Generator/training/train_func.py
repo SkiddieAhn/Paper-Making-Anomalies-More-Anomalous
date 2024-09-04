@@ -198,22 +198,22 @@ def first_direction(cfg, input1, input2, input3, target, models, losses):
     intensity_loss = losses['intensity_loss']
     gradient_loss = losses['gradient_loss']
     adversarial_loss = losses['adversarial_loss']
-    cs_loss = losses['cosine_sim_loss']
+    triplet_loss = losses['triplet_loss']
 
-    coefs = [1, 1, 0.05, 1] # inte_l, grad_l, adv_l, sim_l
+    coefs = [1, 1, 0.05, 1] # inte_l, grad_l, adv_l, tri_l
 
     # generator prediction and get loss
     pred, frame_feature, motion_feature, ftom_feature, label_feature, ftol_feature = generator(input1, input2, input3)
     inte_l = intensity_loss(pred, target)
     grad_l = gradient_loss(pred, target)
     adv_l = adversarial_loss(discriminator(pred))
-    sim_l = cs_loss(anchor=ftom_feature, positive=motion_feature, negative=frame_feature) + \
-            cs_loss(anchor=ftol_feature, positive=label_feature, negative=frame_feature) 
+    tri_l = triplet_loss(anchor=ftom_feature, positive=motion_feature, negative=frame_feature) + \
+            triplet_loss(anchor=ftol_feature, positive=label_feature, negative=frame_feature) 
 
     loss_gen = coefs[0] * inte_l + \
                 coefs[1] * grad_l + \
                 coefs[2] * adv_l + \
-                coefs[3] * sim_l
+                coefs[3] * tri_l
 
     # discriminator
     loss_dis = discriminate_loss(discriminator(target),

@@ -65,6 +65,9 @@ def val_test_eval(cfg, generator, autoencoder, iter):
         segnet = torch.hub.load('pytorch/vision:v0.10.0', 'deeplabv3_resnet101', pretrained=True).cuda()
     segnet.eval()
 
+    if not os.path.exists(f"results/{dataset_name}/{iter}"):
+        os.makedirs(f"results/{dataset_name}/{iter}")
+
     '''
     ===========================
     1. get PSNR Error 

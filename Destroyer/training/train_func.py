@@ -101,7 +101,7 @@ def training(cfg, dataset, dataloader, models, opts, schs, scores):
                 f_target = clips[:, 12:15, :, :].cuda()  # (n, 3, 256, 256) 
 
                 # Forward
-                _, _, FG_frame = first_direction(cfg=cfg, input1=f_input1, input2=f_input2, input3=f_input3, target=f_target, models=models) # (n, 3, 256, 256) 
+                _, _, FG_frame = first_direction(input1=f_input1, input2=f_input2, input3=f_input3, models=models) # (n, 3, 256, 256) 
 
                 '''
                 -------------------
@@ -221,7 +221,7 @@ def training(cfg, dataset, dataloader, models, opts, schs, scores):
                 schs['sch_A'].step()
 
 
-def first_direction(cfg, input1, input2, input3, target, models):
+def first_direction(input1, input2, input3, models):
     '''
     Return generator_loss, discriminator_loss, generated_frame
     '''

@@ -13,8 +13,7 @@ def np_load_frame(filename, resize_h, resize_w):
 
 
 def make_models_dict(models, opts, scores):
-    model_dict = {'net_g': models['generator'].state_dict(), 'optimizer_g': opts['optimizer_G'].state_dict(),
-                'net_d': models['discriminator'].state_dict(), 'optimizer_d': opts['optimizer_D'].state_dict(),
+    model_dict = {'net_g': models['generator'].state_dict(), 
                 'net_a': models['autoencoder'].state_dict(), 'optimizer_a': opts['optimizer_A'].state_dict(),
                 'step':int(scores['step']), 'iter_list':scores['iter_list'], 
                 'g_best_auc':float(scores['g_best_auc']), 'a_best_auc':float(scores['a_best_auc']), 

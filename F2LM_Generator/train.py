@@ -38,29 +38,26 @@ def main():
     train_dataloader = DataLoader(dataset=train_dataset, batch_size=train_cfg.batch_size, shuffle=True, num_workers=4, drop_last=True)
     print_infor(cfg=train_cfg, dataloader=train_dataloader)
 
-    # input size
-    train_img_size=[3, 4, train_cfg.img_size[0], train_cfg.img_size[1]]
-
     # define models
-    generator, discriminator, autoencoder, flownet, segnet = def_models(cfg=train_cfg, train_img_size=train_img_size)
+    generator, discriminator, flownet, segnet = def_models()
 
     # define losses
-    adversarial_loss, discriminate_loss, gradient_loss, intensity_loss, cosine_sim_loss = def_losses(cfg=train_cfg)
+    adversarial_loss, discriminate_loss, gradient_loss, intensity_loss, triplet_loss = def_losses()
 
     # define optimizer and scheduler
-    optimizer_G, optimizer_D, optimizer_A, sch_G, sch_D, sch_A = def_optim_sch(train_cfg, generator, discriminator, autoencoder)
+    optimizer_G, optimizer_D, sch_G, sch_D = def_optim_sch(train_cfg, generator, discriminator)
 
     # load models
-    load_models(train_cfg, generator, discriminator, autoencoder, flownet, segnet, optimizer_G, optimizer_D, optimizer_A)
+    load_models(train_cfg, generator, discriminator, flownet, segnet, optimizer_G, optimizer_D)
 
     # load scores
     scores = load_scores(train_cfg)
 
     # make dict
-    models = make_model_dict(generator, discriminator, autoencoder, flownet, segnet)
-    losses = make_loss_dict(discriminate_loss, intensity_loss, gradient_loss, adversarial_loss, cosine_sim_loss)
-    opts = make_opt_dict(optimizer_G, optimizer_D, optimizer_A)
-    schs = make_sch_dict(train_cfg, sch_G, sch_D, sch_A)
+    models = make_model_dict(generator, discriminator, flownet, segnet)
+    losses = make_loss_dict(discriminate_loss, intensity_loss, gradient_loss, adversarial_loss, triplet_loss)
+    opts = make_opt_dict(optimizer_G, optimizer_D)
+    schs = make_sch_dict(train_cfg, sch_G, sch_D)
 
 
     '''

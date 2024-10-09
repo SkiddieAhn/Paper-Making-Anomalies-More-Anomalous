@@ -57,7 +57,7 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
   
 |     UCSD Ped2    | CUHK Avenue    |Shnaghai Tech.    |
 |:------------------------:|:-----------:|:-----------:|
-|[Official Site](http://www.svcl.ucsd.edu/projects/anomaly/dataset.htm)|[Official Site](https://www.cse.cuhk.edu.hk/leojia/projects/detectabnormal/dataset.html)|[Official Site](https://svip-lab.github.io/dataset/campus_dataset.html)|
+|[Google Drive](https://drive.google.com/file/d/1lDhPPONJfivF_CtxIA3gg74f7RhNII-h/view?usp=sharing)|[Github Page](https://github.com/SkiddieAhn/Paper-VideoPatchCore/blob/main/DATA_README.md)|[Github Page](https://github.com/SkiddieAhn/Paper-VideoPatchCore/blob/main/DATA_README.md)|
   
 ## Training
 - Navigate to the ```F2LM_Generator``` directory and enter the following command.

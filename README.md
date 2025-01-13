@@ -2,7 +2,7 @@
 
 [![Paper](https://img.shields.io/badge/Paper-PDF-DO9874)](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10462109)
 [![Project](https://img.shields.io/badge/Project-Website(ENG)-87CEEB)](https://shacoding.com/2024/03/15/making-anomalies-more-anomalous-video-anomaly-detection-using-a-novel-generator-and-destroyer-ieee-access/)
-[![slides](https://img.shields.io/badge/Presentation-Slides(KOR)-B762C1)](https://shacoding.com/wp-content/uploads/2024/05/IEEE-Access-F2LM-%EC%83%9D%EC%84%B1%EC%9E%90%EC%99%80-%ED%8C%8C%EA%B4%B4%EC%9E%90%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B9%84%EB%94%94%EC%98%A4-%EC%9D%B4%EC%83%81-%ED%83%90%EC%A7%80-%EB%B0%A9%EB%B2%95.pdf)
+[![slides](https://img.shields.io/badge/Presentation-Slides(KOR)-B762C1)](https://shacoding.com/wp-content/uploads/2024/03/%EB%B0%9C%ED%91%9C-%EC%9E%90%EB%A3%8C-F2LM-%EA%B8%B0%EB%B0%98%EC%9D%98-%EB%B9%84%EB%94%94%EC%98%A4-%EC%9D%B4%EC%83%81-%ED%83%90%EC%A7%80-%EB%B0%A9%EB%B2%95-%EB%B0%8F-%EC%9E%A5%EC%B9%98.pdf)
 
 This repository is the ```official open-source``` of [Making Anomalies More Anomalous: Video Anomaly Detection Using a Novel Generator and Destroyer](https://ieeexplore.ieee.org/document/10462109/)
 by Seungkyun Hong*, Sunghyun Ahn*, Youngwan Jo and Sanghyun Park. ```(*equally contributed)```

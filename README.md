@@ -57,7 +57,7 @@ The Destroyer model enhances abnormality by destroying abnormal areas, resulting
   
 |     UCSD Ped2    | CUHK Avenue    |Shnaghai Tech.    |
 |:------------------------:|:-----------:|:-----------:|
-|[Google Drive](https://drive.google.com/file/d/1lDhPPONJfivF_CtxIA3gg74f7RhNII-h/view?usp=sharing)|[Github Page](https://github.com/SkiddieAhn/Paper-VideoPatchCore/blob/main/DATA_README.md)|[Github Page](https://github.com/SkiddieAhn/Paper-VideoPatchCore/blob/main/DATA_README.md)|
+|[Google Drive](https://drive.google.com/file/d/1UZwAFTbFec7-tcNY0M4AIEix3vO86Eda/view?usp=sharing)|[Github Page](https://github.com/SkiddieAhn/Paper-VideoPatchCore/blob/main/DATA_README.md)|[Github Page](https://github.com/SkiddieAhn/Paper-VideoPatchCore/blob/main/DATA_README.md)|
   
 ## Training
 - Navigate to the ```F2LM_Generator``` directory and enter the following command.
@@ -114,7 +114,7 @@ python eval.py --dataset={dataset_name} --trained_model=a_best_auc_{dataset_name
   
 |   DeepLabv3     | FlowNetv2    |Ours    |
 |:--------------:|:-----------:|:-----------:|
-|[PyTorch Tutorial](https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/)|[Google Drive](https://drive.google.com/file/d/1G3p84hzYRTCboNnJTb3iLwIPiHeNg-D_/view?usp=drive_link)|[Google Drive](https://drive.google.com/file/d/1oMopZL4qAI1dIzrABu-J-wJpE0q1ge5F/view?usp=sharing)|
+|[PyTorch Tutorial](https://pytorch.org/hub/pytorch_vision_deeplabv3_resnet101/)|[Google Drive](https://drive.google.com/file/d/1QYlo-ebSQ58KmVFhJIkXDNILCNF7Gd6B/view?usp=sharing)|[Google Drive](https://drive.google.com/file/d/1XievE92zPEUGNZX6LGlwzndyejGB6uKA/view?usp=sharing)|
 
 ## Additional material
 We observed a **1.6% performance improvement** on the ```UCSD Ped2``` dataset by applying a <ins>Gaussian 1D filter</ins> to the anomaly score in our model. However, we chose not to conduct performance comparisons in the paper to maintain fairness.
